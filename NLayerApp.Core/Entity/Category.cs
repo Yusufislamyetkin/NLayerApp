@@ -6,5 +6,6 @@
 
         //Navigation Prop
         public ICollection<Product> Products { get; set; }
+       
     }
 }

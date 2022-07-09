@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace NLayerApp.Repository.Repository
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
+
     {
         public ProductRepository(AppDbContext db) : base(db)
         {
@@ -21,5 +22,7 @@ namespace NLayerApp.Repository.Repository
 
             return await _db.products.Include(x => x.Category).ToListAsync();
         }
+
+    
     }
 }

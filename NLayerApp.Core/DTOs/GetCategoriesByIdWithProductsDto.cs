@@ -10,6 +10,7 @@ namespace NLayerApp.Core.DTOs
 {
     public class GetCategoriesByIdWithProductsDto : CategoryDto
     {
-        public ProductDto ProductDto { get; set; }
+        public List<ProductDto> Products { get; set; }
+
     }
 }

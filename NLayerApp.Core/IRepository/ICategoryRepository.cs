@@ -1,4 +1,5 @@
-﻿using NLayerApp.Core.Entity;
+﻿using NLayerApp.Core.DTOs;
+using NLayerApp.Core.Entity;
 using NLayerApp.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace NLayerApp.Core.IRepository
 {
-    internal interface ICategoryRepository:IGenericRepository<Category>
+    public interface ICategoryRepository:IGenericRepository<Category>
     {
-        Task<Cate>
+        Task<List<Category>> getCategoriesByIdWithProductsDto(int id);
     }
 }
