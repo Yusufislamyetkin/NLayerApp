@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NLayerApp.Core.IRepository;
 using NLayerApp.Core.IUnitOfWork;
 using NLayerApp.Core.Repositories;
 using NLayerApp.Core.Services;
@@ -6,6 +7,7 @@ using NLayerApp.Repository.Context;
 using NLayerApp.Repository.Repository;
 using NLayerApp.Repository.UnitOfWork;
 using NLayerApp.Service;
+using NLayerApp.Service.Concrete;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +19,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(Service<>));
+builder.Services.AddAutoMapper(typeof(DtoMapper));
+
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), option =>

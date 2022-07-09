@@ -4,7 +4,7 @@ using NLayerApp.Core.Repositories;
 using NLayerApp.Core.Services;
 using System.Linq.Expressions;
 
-namespace NLayerApp.Service
+namespace NLayerApp.Service.Concrete
 {
     public class Service<T> : IGenericService<T> where T : class
     {
@@ -67,7 +67,7 @@ namespace NLayerApp.Service
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-           return _repository.Where(expression);
+            return _repository.Where(expression);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace NLayerApp.Repository.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly AppDbContext _db;
+        protected readonly AppDbContext _db;
         private readonly DbSet<T> _dbset;
 
         public GenericRepository(AppDbContext db)
@@ -17,6 +17,7 @@ namespace NLayerApp.Repository.Repository
 
         public async Task AddAsync(T entity)
         {
+            
             await _dbset.AddAsync(entity);
         }
 
