@@ -2,6 +2,7 @@
 using NLayerApp.Core.IUnitOfWork;
 using NLayerApp.Core.Repositories;
 using NLayerApp.Core.Services;
+using NLayerApp.Service.Exceptions;
 using System.Linq.Expressions;
 
 namespace NLayerApp.Service.Concrete
@@ -50,7 +51,12 @@ namespace NLayerApp.Service.Concrete
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+           var hasValue = await _repository.GetByIdAsync(id);
+            if (hasValue == null)
+            {
+                throw new NotFoundExcepiton($"{typeof(T).Name} does not found");
+            }
+            return hasValue;
         }
 
         public async Task RemoveRangeAsync(IEnumerable<T> entities)
